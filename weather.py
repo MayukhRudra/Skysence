@@ -11,10 +11,17 @@ class WeatherData:
     temperature: int
 
 def get_lan_lon(city_name, state_code, country_code, API_key):
-    resp = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{state_code},{country_code}&appid={API_key}').json()
+    url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{state_code},{country_code}&appid={API_key}'
+    resp = requests.get(url).json()
+    
+    if not resp:
+        print(f"[ERROR] No results for: {city_name}, {state_code}, {country_code}")
+        return None, None
+    
     data = resp[0]
     lat, lon = data.get('lat'), data.get('lon')
     return lat, lon
+
 
 def get_location_name(lat, lon, API_key):
     resp = requests.get(f'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit=1&appid={API_key}').json()
@@ -112,8 +119,8 @@ def get_air_pollution(lat, lon, API_key):
         
 def main(city_name, state_name, country_name):
     lat, lon = get_lan_lon(city_name, state_name, country_name, api_key)
-    if lat is None or lon is None:
-        return None
+    if not lat or not lon:
+            return {'error': 'Location not found'}
     current = get_current_weather(lat, lon, api_key)
     hourly, daily = get_forecasts(lat, lon, api_key)
     pollution = get_air_pollution(lat, lon, api_key)
