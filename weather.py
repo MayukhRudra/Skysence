@@ -123,6 +123,8 @@ def get_air_pollution(lat, lon, API_key):
     }
         
 def main(city_name, state_name, country_name):
+    if not city_name or not state_name or not country_name:
+        return {'error': 'Correct location is required'}
     lat, lon = get_lan_lon(city_name, state_name, country_name, api_key)
     if not lat or not lon:
             return {'error': 'Location not found'}
