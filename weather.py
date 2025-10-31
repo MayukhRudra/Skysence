@@ -12,15 +12,20 @@ class WeatherData:
 
 def get_lan_lon(city_name, state_code, country_code, API_key):
     url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{state_code},{country_code}&appid={API_key}'
-    resp = requests.get(url).json()
     
-    if not resp:
-        print(f"[ERROR] No results for: {city_name}, {state_code}, {country_code}")
+    try:
+        resp = requests.get(url).json()
+    
+        if not resp:
+            print(f"[ERROR] No results for: {city_name}, {state_code}, {country_code}")
+            return None, None
+        
+        data = resp[0]
+        lat, lon = data.get('lat'), data.get('lon')
+        return lat, lon
+    except Exception as e:
+        print(f"[ERROR] Exception occurred: {e}")
         return None, None
-    
-    data = resp[0]
-    lat, lon = data.get('lat'), data.get('lon')
-    return lat, lon
 
 
 def get_location_name(lat, lon, API_key):
