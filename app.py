@@ -1,7 +1,4 @@
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from weather import main as get_weather, get_weather_by_coords, get_coords_metadata
 from datetime import timedelta
