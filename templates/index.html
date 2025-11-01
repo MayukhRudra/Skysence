@@ -30,6 +30,11 @@
             </div> <br>
             <button class="submit btn btn-light">Find</button>
         </form>
+        {% if error %}
+        <div class="alert alert-danger mt-4 mx-auto" style="max-width: 500px;" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
         {% if data %}
         <div class="mt-4 d-flex flex-column align-items-center justify-content-center">
             <img src="https://openweathermap.org/img/wn/{{data.current.icon}}@4x.png" alt="Icon" style="width:100px;">
