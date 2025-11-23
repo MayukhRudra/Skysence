@@ -11,7 +11,7 @@
     }
     </style>
 </head>
-<body class="bg-info text-white">
+<body class="text-white" style="background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);">
     <div class="text-center">
         <h1 class="mt-5">SkySence</h1>
         <form action="/" method="post">
@@ -100,8 +100,8 @@
 {% endif %}
 {% if data and data.hourly %}
 <h3 class="mt-5 mb-3 text-center">Hourly Forecast</h3>
-<div class="overflow-auto px-2 pb-2">
-    <div class="d-flex gap-3" style="min-width: max-content;">
+<div class="d-flex justify-content-center overflow-auto px-2 pb-2">
+    <div class="d-flex gap-3">
         {% for hour in data.hourly %}
         <div class="text-center bg-white text-dark p-3 rounded shadow-sm" style="min-width: 100px;">
             <div style="font-weight: bold;">{{ hour.time }}</div>
