@@ -15,16 +15,11 @@
         justify-content: center;
     }
 
-    /* Mobile only: start from left when content overflows */
-    @media (max-width: 767px) {
+    /* Only on small mobile screens: start from left */
+    @media (max-width: 576px) {
         .hourly-forecast-container {
             justify-content: flex-start;
         }
-    }
-    
-    /* When content fits on screen, always center */
-    .hourly-forecast-container:not(.overflow-x) {
-        justify-content: center;
     }
     </style>
 </head>
