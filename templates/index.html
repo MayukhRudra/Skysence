@@ -100,15 +100,17 @@
 {% endif %}
 {% if data and data.hourly %}
 <h3 class="mt-5 mb-3 text-center">Hourly Forecast</h3>
-<div class="d-flex justify-content-center overflow-auto gap-3 px-2 pb-2">
-    {% for hour in data.hourly %}
-    <div class="text-center bg-white text-dark p-3 rounded shadow-sm" style="min-width: 100px;">
-        <div style="font-weight: bold;">{{ hour.time }}</div>
-        <img src="https://openweathermap.org/img/wn/{{hour.icon}}@2x.png" alt="Icon" style="width:50px;">
-        <div style="font-size: 1.2rem;">{{ hour.temperature }}&deg;C</div>
-        <div class="text-capitalize" style="font-size: 0.9rem;">{{ hour.main }}</div>
+<div class="overflow-auto px-2 pb-2">
+    <div class="d-flex gap-3" style="min-width: max-content;">
+        {% for hour in data.hourly %}
+        <div class="text-center bg-white text-dark p-3 rounded shadow-sm" style="min-width: 100px;">
+            <div style="font-weight: bold;">{{ hour.time }}</div>
+            <img src="https://openweathermap.org/img/wn/{{hour.icon}}@2x.png" alt="Icon" style="width:50px;">
+            <div style="font-size: 1.2rem;">{{ hour.temperature }}&deg;C</div>
+            <div class="text-capitalize" style="font-size: 0.9rem;">{{ hour.main }}</div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endif %}
 {% if data and data.forecast %}
