@@ -9,6 +9,23 @@
     .bg-orange {
       background-color: #fd7e14 !important;
     }
+    
+    .hourly-forecast-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Mobile only: start from left when content overflows */
+    @media (max-width: 767px) {
+        .hourly-forecast-container {
+            justify-content: flex-start;
+        }
+    }
+    
+    /* When content fits on screen, always center */
+    .hourly-forecast-container:not(.overflow-x) {
+        justify-content: center;
+    }
     </style>
 </head>
 <body class="text-white" style="background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);">
@@ -100,8 +117,8 @@
 {% endif %}
 {% if data and data.hourly %}
 <h3 class="mt-5 mb-3 text-center">Hourly Forecast</h3>
-<div class="overflow-auto px-2 pb-2">
-    <div class="d-flex justify-content-center gap-3" style="min-width: 100%;">
+<div class="hourly-forecast-container overflow-auto px-2 pb-2">
+    <div class="d-flex gap-3">
         {% for hour in data.hourly %}
         <div class="text-center bg-white text-dark p-3 rounded shadow-sm flex-shrink-0" style="width: 100px;">
             <div style="font-weight: bold;">{{ hour.time }}</div>
